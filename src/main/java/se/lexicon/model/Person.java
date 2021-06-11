@@ -1,25 +1,40 @@
 package se.lexicon.model;
 
 public class Person {
-    private final int person_id;
-    private final String first_name;
-    private final String last_name;
+    private final int id;
+    private final String firstName;
+    private final String lastName;
 
-    public Person(int person_id, String first_name, String last_name) {
-        this.person_id = person_id;
-        this.first_name = first_name;
-        this.last_name = last_name;
+    public Person(String firstName, String lastName) {
+        this.id = 0;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    public int getPerson_id() {
-        return person_id;
+    public Person(int id, String firstName, String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public int getId() {
+        return id;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{ " +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                " }";
     }
 }
