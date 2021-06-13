@@ -12,7 +12,7 @@ public class PersonDAO implements People{
     public Person create(Person person) {
 
         if(person == null) throw new IllegalArgumentException("Person person was null");
-        if(person.getId() != 0) throw new IllegalArgumentException("Person person is already persisted");
+        if(findById(person.getId()) != null) throw new IllegalArgumentException("Person person is already persisted");
 
         Person created = null;
         Connection connection = null;
@@ -128,6 +128,9 @@ public class PersonDAO implements People{
 
     public Person update(Person person) {
 
+        if(person == null) throw new IllegalArgumentException("Person person was null");
+        if(findById(person.getId()) == null ) throw new IllegalArgumentException("Person person is not yet persisted");
+
         Connection connection = null;
         PreparedStatement statement = null;
         int rowsAffected = 0;
@@ -144,12 +147,13 @@ public class PersonDAO implements People{
         }finally {
             closeAll(statement, connection);
         }
-        return null;
+        if (rowsAffected != 1) return null;
+
+        return person;
     }
 
     public Boolean deleteById(int id) {
 
-        Person foundPerson = null;
         Connection connection = null;
         PreparedStatement statement = null;
         int rowsAffected = 0;

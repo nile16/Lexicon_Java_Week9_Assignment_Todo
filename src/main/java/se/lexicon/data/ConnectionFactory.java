@@ -14,7 +14,7 @@ public class ConnectionFactory {
 
     static {
         Properties properties = new Properties();
-        try(FileReader reader = new FileReader("credentials/connection.prop")){
+        try(FileReader reader = new FileReader("credentials/connection.properties")){
             properties.load(reader);
         }catch (IOException ex){
             throw new RuntimeException(ex);
